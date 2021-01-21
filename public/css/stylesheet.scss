@@ -1,0 +1,63 @@
+
+/*
+* Default tags
+*/
+img {
+  max-width: 500px;
+}
+
+/*
+Grid controls
+*/
+.grid-container {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  width: 90vw;
+}
+
+.grid-container > div {
+  padding: 30px 20px 20px;
+  text-align: center;
+}
+
+/*
+Items within grid
+*/
+.item {
+  font-size: 2rem;
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.header {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+.release-date {
+  font-size: 1rem;
+  text-align: left;
+}
+
+/*
+Window-width configurations
+*/
+@media screen and (max-width: 1100px) {
+  .grid-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (max-width: 1600px) and (min-width: 1100px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
