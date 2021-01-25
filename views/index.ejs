@@ -1,5 +1,23 @@
 <%- include('header') -%>
+<div class="videoCatagories">
+  <% videoData.categories.forEach((el ,i) => { %>
+    <div class="catagorie">
+      <div class="catagorie-title">
+        <h2><%= el.title %></h2>
+      </div>
+      <div class="videos">
+        <% el.videos.forEach((el ,i) => { %>
+        <div class="thumbnail"><a href>
+          <img src="<%= videoData.videos[el-1].poster %>">
+          <div class="timeStamp"><%= createTimeStamp(videoData.videos[el-1].duration) %></div>
+          <div class="date"><%= createDate(videoData.videos[el-1].created) %></div>
+        </a></div>
+        <% }); %>
+      </div>
+    </div>
+  <% }); %>
+  </div>
 
-<p>I work my dude!</p>
+
 
 <%- include('footer') -%>
