@@ -5,19 +5,19 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "npx stylelint ./public/SASS/stylesheet.scss && npx eslint app.mjs",
-    "start": "sass ./public/SASS/stylesheet.scss ./public/styles.css && node app.mjs"
+    "test": "npx stylelint ./public/SASS/stylesheet.scss && npx eslint app.cjs",
+    "start": "sass ./public/SASS/stylesheet.scss ./public/styles.css && node app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.5",
     "sass": "^1.32.4",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "fs": "0.0.1-security"
   },
   "devDependencies": {
-    "ejs": "^3.1.5",
     "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
