@@ -78,34 +78,3 @@ app.locals.createTimeStamp = function(time){
   else if (sec<10) return "0:0"+sec;
   else return "0:"+sec;
 }
-
-function createDate(date){
-  var now = new Date().getTime();
-
-  now/=1000;
-  date/=1000;
-  date = now-date;
-
-  let since=0;
-
-  if(date < 86400){
-    if(date/3600<2) return "1 hour since"
-    return Math.floor(date/3600)+" hours since";
-  } //hours
-  else if(date < 604800){
-    if(date/86400<2) return "1 day since"
-    return Math.floor(date/86400)+" days since";
-  } //day
-  else if(date < 2592000){
-    if(date/604800<2) "1 week since"
-    return Math.floor(date/604800)+" weeks since";
-  } //week
-  else if(date <31536000){
-    if(date/2592000 < 2) return "1 month since"
-    return Math.floor(date/2592000)+" months since";
-  } //months
-  else{
-    if(date/31536000<2) return "1 year since"
-    return Math.floor(date/31536000)+" years since"
-  } //years
-}
