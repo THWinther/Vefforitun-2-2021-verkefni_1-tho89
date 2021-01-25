@@ -2,10 +2,11 @@
   "name": "verkefni_1",
   "version": "1.0.0",
   "description": "[Kynning í fyrirlestri](https://youtu.be/pCEHnurbuCU).",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "npx stylelint ./public/css/stylesheet.scss && npx eslint app.mjs",
-    "start": "node app.mjs"
+    "test": "npx stylelint ./public/SASS/stylesheet.scss && npx eslint app.mjs",
+    "start": "sass ./public/SASS/stylesheet.scss ./public/styles.css && node app.mjs"
   },
   "author": "",
   "license": "ISC",
