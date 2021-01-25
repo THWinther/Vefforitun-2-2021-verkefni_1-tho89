@@ -30,35 +30,34 @@ Grid controls
 Items within grid
 */
 
-.videos{
+.videos {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
 }
 
-.thumbnail{
+.thumbnail {
   position: relative;
 }
 
-.timeStamp{
-  position: absolute;
+.time-stamp {
+  background-color: #000;
   bottom: 20px;
-  right: 20px;
-  background-color: black;
-  color: white;
+  color: #fff;
+  padding-bottom: 5px;
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: 5px;
+  position: absolute;
+  right: 20px;
 }
 
-.videoCatagories{
-  margin: auto;
+.video-catagories {
   align-items: center;
-  width: 90%;
-  border: 3px solid green;
+  border: 3px solid #008000;
+  margin: auto;
   padding: 10px;
+  width: 90%;
 }
-
 
 /*
 Window-width configurations
