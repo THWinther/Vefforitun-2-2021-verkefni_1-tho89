@@ -14,7 +14,7 @@ viewsPath = viewsPath.substr(1, viewsPath.length);
 app.set('view engine', 'ejs');
 app.set('views', viewsPath);
 
-function readVideoDataMiddleware(req,res,next){
+function readVideoDataMiddleware(req, res, next) {
   fs.readFile('./videos.json', (err, data) => {
     if (err) {
       throw err;
@@ -24,30 +24,28 @@ function readVideoDataMiddleware(req,res,next){
   });
 }
 
-
-
-
 app.use(express.static(publicURL.substring(1, publicURL.length)));
 
-app.get('/',[readVideoDataMiddleware],(req, res) => {
-    res.render('index',
-      {title: 'Fræðslumyndbandaleigan'});
+app.get('/', [readVideoDataMiddleware], (req, res) => {
+  res.render('index',
+    { title: 'Fræðslumyndbandaleigan' });
 });
 
-
-app.get('/video/:id', (req, res) =>{
+/*
+app.get('/video/:id', (req, res) => {
 
 });
+*/
 
 const hostname = '127.0.0.1';
 const port = 3000;
 
-//Þetta var besta leiðinn sem ég fann að vista fall í app.locals
+// Þetta var besta leiðinn sem ég fann að vista fall í app.locals
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
-//Þetta var besta leiðinn sem ég fann að vista fall í app.locals
+// Þetta var besta leiðinn sem ég fann að vista fall í app.locals
 app.locals.createDate = function (date) {
   const then = Math.floor(new Date().getTime() / 1000) - Math.floor(date / 1000);
 
