@@ -1,2 +1,7 @@
 <%- include('header') -%>
+<video width="500" height="500">
+  <!--Link í json skilar rangri URI þannig henni er breyt í rétt fyrir-->
+  <source src="<%=videoData.videos[id-1].video.substring(1,videoData.videos[id-1].video.length)%>">
+</video>
+<p id="test"></p>
 <%- include('footer') -%>

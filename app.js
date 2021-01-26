@@ -14,6 +14,7 @@ viewsPath = viewsPath.substr(1, viewsPath.length);
 app.set('view engine', 'ejs');
 app.set('views', viewsPath);
 
+
 function readVideoDataMiddleware(req, res, next) {
   fs.readFile('./videos.json', (err, data) => {
     if (err) {
@@ -31,11 +32,33 @@ app.get('/', [readVideoDataMiddleware], (req, res) => {
     { title: 'Fræðslumyndbandaleigan' });
 });
 
-/*
-app.get('/video/:id', (req, res) => {
-
+app.get('/video/videos/:name',(req,res) =>{
+    const name = req.params.name;
+    res.sendFile(`${__dirname}/public/videos/${name}`);
 });
-*/
+
+//passa uppá að rétt dir er notað til að skila css 100% að það er til betri lausn
+app.get('/video/styles.css',(req,res) =>{
+  res.sendFile(`${publicURL.substring(1, publicURL.length)}/styles.css`,{headers: {'Content-Type': 'text/css'}});
+});
+
+app.get('/video/:id', [readVideoDataMiddleware],(req, res) => {
+  let id = req.params.id;
+  if(id-1>=res.locals.videoData.videos.length){
+    res.status(404).send('404 Invalid video id');
+  }
+  else{
+    let title = res.locals.videoData.videos[id-1].title
+    res.render('video',{
+      id: id,
+      title: title
+    });
+  }
+});
+
+app.get('/video/styles.css',(req,res) =>{
+  res.sendFile(`${__dirname}/public/styles.css`);
+});
 
 const hostname = '127.0.0.1';
 const port = 3000;
