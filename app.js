@@ -43,24 +43,24 @@ app.locals.createDate = function (date) {
   const then = Math.floor(new Date().getTime() / 1000) - Math.floor(date / 1000);
 
   if (then < 86400) {
-    if (then / 3600 < 2) return '1 dat since release';
-    return `${Math.floor(then / 3600)} hours since release`;
+    if (then / 3600 < 2) return 'Fyrir klukkutíma síðan';
+    return `Fyrir ${Math.floor(then / 3600)} klukkutímum síðan`;
   } // hours
   if (then < 604800) {
-    if (then / 86400 < 2) return '1 day since release';
-    return `${Math.floor(then / 86400)} days since release`;
+    if (then / 86400 < 2) return 'Fyrir degi síðan';
+    return `Fyrir ${Math.floor(then / 86400)} dögum síðan`;
   } // day
   if (then < 2592000) {
-    if (then / 604800 < 2) return '1 week since release';
-    return `${Math.floor(then / 604800)} weeks since release`;
+    if (then / 604800 < 2) return 'Fyrir viku síðan';
+    return `Fyrir ${Math.floor(then / 604800)} vikum síðan`;
   } // week
   if (then < 31536000) {
-    if (then / 2592000 < 2) return '1 month since release';
-    return `${Math.floor(then / 2592000)} months since release`;
+    if (then / 2592000 < 2) return 'Fyrir mánuði síðan';
+    return `Fyrir ${Math.floor(then / 2592000)} mánuðum síðan`;
   } // months
 
-  if (then / 31536000 < 2) return '1 year since release';
-  return `${Math.floor(then / 31536000)} years since release`;
+  if (then / 31536000 < 2) return 'Fyrir ári síðan';
+  return `Fyrir ${Math.floor(then / 31536000)} árum síðan`;
   // years
 };
 
