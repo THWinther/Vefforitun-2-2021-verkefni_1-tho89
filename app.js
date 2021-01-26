@@ -14,20 +14,29 @@ viewsPath = viewsPath.substr(1, viewsPath.length);
 app.set('view engine', 'ejs');
 app.set('views', viewsPath);
 
-app.use(express.static(publicURL.substring(1, publicURL.length)));
-
-app.get('/', (req, res) => {
+function readVideoDataMiddleware(req,res,next){
   fs.readFile('./videos.json', (err, data) => {
     if (err) {
       throw err;
     }
-    const content = JSON.parse(data);
-    res.render('index',
-      {
-        title: 'Fræðslumyndbandaleigan',
-        videoData: content,
-      });
+    res.locals.videoData = JSON.parse(data);
+    next();
   });
+}
+
+
+
+
+app.use(express.static(publicURL.substring(1, publicURL.length)));
+
+app.get('/',[readVideoDataMiddleware],(req, res) => {
+    res.render('index',
+      {title: 'Fræðslumyndbandaleigan'});
+});
+
+
+app.get('/video/:id', (req, res) =>{
+
 });
 
 const hostname = '127.0.0.1';
