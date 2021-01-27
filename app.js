@@ -2,15 +2,18 @@ import express from 'express';
 import fs from 'fs';
 
 let viewsPath = new URL('./views', import.meta.url).pathname;
+let publicURL = new URL('./public', import.meta.url).pathname;
 
-const publicURL = new URL('./public', import.meta.url).pathname;
+// URL bætti alltaf við auka / í byrjun þetta eyðir því
+viewsPath = viewsPath.substr(1, viewsPath.length);
+publicURL = publicURL.substring(1, publicURL.length);
+
 const app = express();
 
 // Þetta verður aðgengilegt gegnum `local.bar` í template
 app.locals.importantize = (str) => (`${str}!`);
 
-// URL bætti alltaf við auka / í byrjun þetta eyðir því
-viewsPath = viewsPath.substr(1, viewsPath.length);
+
 app.set('view engine', 'ejs');
 app.set('views', viewsPath);
 
@@ -24,7 +27,7 @@ function readVideoDataMiddleware(req, res, next) {
   });
 }
 
-app.use(express.static(publicURL.substring(1, publicURL.length)));
+app.use(express.static(publicURL));
 
 app.get('/', [readVideoDataMiddleware], (req, res) => {
   res.render('index',
@@ -33,13 +36,13 @@ app.get('/', [readVideoDataMiddleware], (req, res) => {
 
 app.get('/video/videos/:name', (req, res) => {
   const { name } = req.params;
-  if(name.includes('.png'))res.sendFile(`${publicURL.substring(1, publicURL.length)}/videos/${name}`,{ headers: { 'Content-Type': 'image/png' } });
-  else res.sendFile(`${publicURL.substring(1, publicURL.length)}/videos/${name}`);
+  if (name.includes('.png'))res.sendFile(`${publicURL}/videos/${name}`, { headers: { 'Content-Type': 'image/png' } });
+  else res.sendFile(`${publicURL}/videos/${name}`);
 });
 
 // passa uppá að rétt dir er notað til að skila css, er 100% viss að það er til betri lausn
 app.get('/video/styles.css', (req, res) => {
-  res.sendFile(`${publicURL.substring(1, publicURL.length)}/styles.css`, { headers: { 'Content-Type': 'text/css' } });
+  res.sendFile(`${publicURL}/styles.css`, { headers: { 'Content-Type': 'text/css' } });
 });
 
 app.get('/video/:id', [readVideoDataMiddleware], (req, res) => {

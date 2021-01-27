@@ -14,12 +14,24 @@ body {
   background-color: #f6d6a8;
 }
 
+a {
+  color: #000;
+  text-decoration: none;
+}
 
+a:visited {
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #00f;
+  text-decoration: underline;
+}
 
 /*
 Flex items
 */
-
 .videos {
   align-items: center;
   border-bottom: 5px;
@@ -31,8 +43,8 @@ Flex items
 }
 
 .thumbnail {
-  position: relative;
   margin: 6px;
+  position: relative;
 }
 
 .time-stamp {
@@ -61,4 +73,8 @@ Video site
   height: 45vw;
   margin: 0 auto;
   width: 80vw;
+}
+
+.til-baka-link {
+  font-size: 2rem;
 }
