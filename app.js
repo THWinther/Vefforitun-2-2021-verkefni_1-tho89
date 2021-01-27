@@ -63,8 +63,10 @@ app.get('/video/:id', [readVideoDataMiddleware], (req, res) => {
 
 const hostname = '127.0.0.1';
 const port = 3000;
+const linkName = `${hostname}:${port}`;
 
 app.listen(port, hostname, () => {
+  app.locals.hostname = linkName;
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 

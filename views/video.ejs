@@ -8,7 +8,7 @@
 
 <div class="videos">
   <% videoData.videos[id-1].related.forEach((el ,i) => { %>
-  <div class="thumbnail"><a href="http://localhost:3000/video/<%=el%>">
+  <div class="thumbnail"><a href="http://<%=hostname%>/video/<%=el%>">
     <img src="<%= videoData.videos[el-1].poster %>">
     <div class="time-stamp"><%= createTimeStamp(videoData.videos[el-1].duration) %></div>
     <div class="date"><%= createDate(videoData.videos[el-1].created) %></div>
