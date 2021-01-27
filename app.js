@@ -1,6 +1,6 @@
 import express from 'express';
 import fs from 'fs';
-import {setHello, setHello as setHelloFunction} from './src/videos.js'
+import { createTimeStamp, createDate } from './src/videos.js';
 
 let viewsPath = new URL('./views', import.meta.url).pathname;
 let publicURL = new URL('./public', import.meta.url).pathname;
@@ -56,7 +56,7 @@ app.get('/video/:id', [readVideoDataMiddleware], (req, res) => {
     const { title } = res.locals.videoData.videos[id - 1];
     res.render('video', {
       id,
-      title
+      title,
     });
   }
 });
@@ -69,43 +69,6 @@ app.listen(port, hostname, () => {
 });
 
 // Þetta var besta leiðinn sem ég fann að vista fall í app.locals
-app.locals.createDate = function (date) {
-  const then = Math.floor(new Date().getTime() / 1000) - Math.floor(date / 1000);
+app.locals.createDate = createDate;
 
-  if (then < 86400) {
-    if (then / 3600 < 2) return 'Fyrir klukkutíma síðan';
-    return `Fyrir ${Math.floor(then / 3600)} klukkutímum síðan`;
-  } // hours
-  if (then < 604800) {
-    if (then / 86400 < 2) return 'Fyrir degi síðan';
-    return `Fyrir ${Math.floor(then / 86400)} dögum síðan`;
-  } // day
-  if (then < 2592000) {
-    if (then / 604800 < 2) return 'Fyrir viku síðan';
-    return `Fyrir ${Math.floor(then / 604800)} vikum síðan`;
-  } // week
-  if (then < 31536000) {
-    if (then / 2592000 < 2) return 'Fyrir mánuði síðan';
-    return `Fyrir ${Math.floor(then / 2592000)} mánuðum síðan`;
-  } // months
-
-  if (then / 31536000 < 2) return 'Fyrir ári síðan';
-  return `Fyrir ${Math.floor(then / 31536000)} árum síðan`;
-  // years
-};
-
-app.locals.createTimeStamp = function (time) {
-  const sec = time % 60;
-  const min = Math.floor(time / 60);
-
-  if (min > 0) {
-    if (sec < 10) return `${min}:0${sec}`;
-    return `${min}:${sec}`;
-  }
-  if (sec < 10) return `0:0${sec}`;
-  return `0:${sec}`;
-};
-
-app.get('*', (req, res) => {
-  res.status(404).send('404 Invalid url');
-});
+app.locals.createTimeStamp = createTimeStamp;

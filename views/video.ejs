@@ -1,10 +1,8 @@
 <%- include('header') -%>
-<video controls class="video-display">
+<video class="video-display" id="video-player" controls>
   <!--Link í json skilar rangri URI þannig henni er breyt í rétt fyrir-->
-  <source src="<%=videoData.videos[id-1].video.substring(1,videoData.videos[id-1].video.length)%>" con>
+  <source src="<%=videoData.videos[id-1].video.substring(1,videoData.videos[id-1].video.length)%>">
 </video>
-
-
 
 <h2>Tengd Myndbönd</h2>
 
