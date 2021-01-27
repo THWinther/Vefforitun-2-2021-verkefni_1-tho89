@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx stylelint ./public/SASS/stylesheet.scss && npx eslint ./src/videos.js && npx eslint app.js",
-    "start": "sass ./public/SASS/stylesheet.scss ./public/styles.css && node app.js"
+    "start": "npx sass ./public/SASS/stylesheet.scss ./public/styles.css && node app.js"
   },
   "author": "",
   "license": "ISC",
