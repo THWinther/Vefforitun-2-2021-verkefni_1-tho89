@@ -1,7 +1,24 @@
 <%- include('header') -%>
-<video width="500" height="500">
+<video controls class="video-display">
   <!--Link í json skilar rangri URI þannig henni er breyt í rétt fyrir-->
-  <source src="<%=videoData.videos[id-1].video.substring(1,videoData.videos[id-1].video.length)%>">
+  <source src="<%=videoData.videos[id-1].video.substring(1,videoData.videos[id-1].video.length)%>" con>
 </video>
-<p id="test"></p>
+
+
+
+<h2>Tengd Myndbönd</h2>
+
+<div class="videos">
+  <% videoData.videos[id-1].related.forEach((el ,i) => { %>
+  <div class="thumbnail"><a href="http://localhost:3000/video/<%=el%>">
+    <img src="<%= videoData.videos[el-1].poster %>">
+    <div class="time-stamp"><%= createTimeStamp(videoData.videos[el-1].duration) %></div>
+    <div class="date"><%= createDate(videoData.videos[el-1].created) %></div>
+  </a></div>
+  <% }); %>
+</div>
+
+<a href="/" class="til-baka-link">Til baka</a>
+
+
 <%- include('footer') -%>

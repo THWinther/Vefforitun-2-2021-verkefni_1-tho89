@@ -33,10 +33,11 @@ app.get('/', [readVideoDataMiddleware], (req, res) => {
 
 app.get('/video/videos/:name', (req, res) => {
   const { name } = req.params;
-  res.sendFile(`${__dirname}/public/videos/${name}`);
+  if(name.includes('.png'))res.sendFile(`${publicURL.substring(1, publicURL.length)}/videos/${name}`,{ headers: { 'Content-Type': 'image/png' } });
+  else res.sendFile(`${publicURL.substring(1, publicURL.length)}/videos/${name}`);
 });
 
-// passa uppá að rétt dir er notað til að skila css 100% að það er til betri lausn
+// passa uppá að rétt dir er notað til að skila css, er 100% viss að það er til betri lausn
 app.get('/video/styles.css', (req, res) => {
   res.sendFile(`${publicURL.substring(1, publicURL.length)}/styles.css`, { headers: { 'Content-Type': 'text/css' } });
 });
@@ -52,10 +53,6 @@ app.get('/video/:id', [readVideoDataMiddleware], (req, res) => {
       title,
     });
   }
-});
-
-app.get('/video/styles.css', (req, res) => {
-  res.sendFile(`${__dirname}/public/styles.css`);
 });
 
 const hostname = '127.0.0.1';
@@ -103,3 +100,7 @@ app.locals.createTimeStamp = function (time) {
   if (sec < 10) return `0:0${sec}`;
   return `0:${sec}`;
 };
+
+app.get('*', (req, res) => {
+  res.status(404).send('404 Invalid url');
+});

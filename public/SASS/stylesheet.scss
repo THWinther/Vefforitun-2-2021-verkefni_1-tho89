@@ -10,34 +10,29 @@ p {
   color: rgb(255, 192, 203);
 }
 
-/*
-Grid controls
-*/
-.grid-container {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
-  width: 90vw;
+body {
+  background-color: #f6d6a8;
 }
 
-.grid-container > div {
-  padding: 30px 20px 20px;
-  text-align: center;
-}
+
 
 /*
-Items within grid
+Flex items
 */
 
 .videos {
   align-items: center;
+  border-bottom: 5px;
+  border-bottom-style: solid;
+  border-color: #808080;
   display: flex;
   flex-wrap: wrap;
+  padding-bottom: 20px;
 }
 
 .thumbnail {
   position: relative;
+  margin: 6px;
 }
 
 .time-stamp {
@@ -53,23 +48,17 @@ Items within grid
 
 .video-catagories {
   align-items: center;
-  border: 3px solid #008000;
   margin: auto;
   padding: 10px;
   width: 90%;
 }
 
 /*
-Window-width configurations
+Video site
 */
-@media screen and (max-width: 1100px) {
-  .grid-container {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-
-@media screen and (max-width: 1600px) and (min-width: 1100px) {
-  .grid-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.video-display {
+  display: block;
+  height: 45vw;
+  margin: 0 auto;
+  width: 80vw;
 }
