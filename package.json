@@ -7,7 +7,7 @@
   "scripts": {
     "test": "npx stylelint ./public/SASS/stylesheet.scss && npx eslint ./src/videos.js && npx eslint app.js",
     "start": "npx sass ./public/SASS/stylesheet.scss ./public/styles.css && node app.js",
-    "deamon": "nodemon app.js"
+    "dev": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
