@@ -1,5 +1,6 @@
 import express from 'express';
 import fs from 'fs';
+import {setHello, setHello as setHelloFunction} from './src/videos.js'
 
 let viewsPath = new URL('./views', import.meta.url).pathname;
 let publicURL = new URL('./public', import.meta.url).pathname;
@@ -12,7 +13,6 @@ const app = express();
 
 // Þetta verður aðgengilegt gegnum `local.bar` í template
 app.locals.importantize = (str) => (`${str}!`);
-
 
 app.set('view engine', 'ejs');
 app.set('views', viewsPath);
@@ -36,13 +36,11 @@ app.get('/', [readVideoDataMiddleware], (req, res) => {
 
 app.get('/video/videos/:name', (req, res) => {
   const { name } = req.params;
-  if (name.includes('.png')){
+  if (name.includes('.png')) {
     res.sendFile(`${publicURL}/videos/${name}`, { headers: { 'Content-Type': 'image/png' } });
-  }
-  else if(name.includes('.mp4')){
+  } else if (name.includes('.mp4')) {
     res.sendFile(`${publicURL}/videos/${name}`, { headers: { 'Content-Type': 'video/mp4' } });
-  }
-  else res.status(404).send('404 Unsupported file type requested');
+  } else res.status(404).send('404 Unsupported file type requested');
 });
 
 // passa uppá að rétt dir er notað til að skila css, er 100% viss að það er til betri lausn
@@ -58,7 +56,7 @@ app.get('/video/:id', [readVideoDataMiddleware], (req, res) => {
     const { title } = res.locals.videoData.videos[id - 1];
     res.render('video', {
       id,
-      title,
+      title
     });
   }
 });
